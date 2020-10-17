@@ -23,8 +23,14 @@ def padroniza(frase):
     return frase_nova
 
 def treinar(bot):
-    df = pd.read_csv('dataset.csv')
     treinador = ListTrainer(bot)
+    treinador.train(
+        "chatterbot.corpus.portuguese.greetings"
+    )
+    df = pd.read_csv('dataUpdate.csv')
+
     for linha in range( df.shape[0] ):
         treinador.train([padroniza(df.iloc[linha, 0]), df.iloc[linha, 1]])
+
+
 
